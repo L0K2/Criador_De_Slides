@@ -32,8 +32,10 @@ class Gui:
             if eventos == "Enviar":
                 for letter in valores["titulo"]:
                     Gui.lstCheck.append(letter)
-                if"/" or "." in Gui.lstCheck:
-                    Gui.janela["mensagem"].update("O Nome não pode conter / ou .")
+                if "." in Gui.lstCheck:
+                    Gui.janela["mensagem"].update("O título não pode conter / ou .")
+                elif "/" in Gui.lstCheck:
+                    Gui.janela["mensagem"].update("O título não pode conter / ou .")
                 else:
                     letras = valores["txt"]
                     Gui.sub = valores["sub"]
