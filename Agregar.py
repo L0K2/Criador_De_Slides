@@ -17,11 +17,14 @@ class Agregar:
                 s += 1
                 cont += 1
             if cont > 0:
-                indB = lista.index("")
-                lista[s:indB] = ['\n'.join(lista[s:indB])]
-                lista.remove(lista[lista.index("")])
-                qe -= 1
-                s += 1
+                if lista.count("") == 0:
+                    return lista
+                else:
+                    indB = lista.index("")
+                    lista[s:indB] = ['\n'.join(lista[s:indB])]
+                    lista.remove(lista[lista.index("")])
+                    qe -= 1
+                    s += 1
         return lista
 """
 #listaTeste = ["1 Elemento","2 Elemento","3 Elemento","4 Elemento","5 Elemento","6 Elemento","7 Elemento","8 Elemento","9elemento"," "]
