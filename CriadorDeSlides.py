@@ -10,8 +10,9 @@ class CriadorDeSlides:
     dir_at = os.path.dirname(os.path.realpath(__file__))
 
     prs = Presentation(dir_at + '\\Padrao.pptx')  # Tema do Slide
-
-    FontName = "K2D ExtraBold"
+    
+    FontNameSM = "K2D SemiBold"
+    FontNameST = "K2D ExtraBold"
 
     def __init__(self):
         pass
@@ -30,7 +31,7 @@ class CriadorDeSlides:
         cx_titulo.text_frame.paragraphs[0].aligment = PP_ALIGN.CENTER
         # AdicionarFont
         font = run.font
-        font.name = CriadorDeSlides.FontName
+        font.name = CriadorDeSlides.FontNameST
         font.size = Pt(250)
         font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
         # SUBTITULO
@@ -46,7 +47,7 @@ class CriadorDeSlides:
         Subcx_titulo.text_frame.paragraphs[0].aligment = PP_ALIGN.CENTER
         # AdicionarFont
         Subfont = Subrun.font
-        Subfont.name = CriadorDeSlides.FontName
+        Subfont.name = CriadorDeSlides.FontNameST
         Subfont.size = Pt(105)
         Subfont.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
 
@@ -72,7 +73,7 @@ class CriadorDeSlides:
             cx_Letra.text_frame.paragraphs[0].aligmnet = PP_ALIGN
 
             font = run.font
-            font.name = CriadorDeSlides.FontName
+            font.name = CriadorDeSlides.FontNameSM
             font.size = Pt(150)
             font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
             CriadorDeSlides.prs.save(titulo + ".pptx")
