@@ -4,15 +4,16 @@ from pptx.enum.text import PP_ALIGN
 from pptx.util import Pt
 from pptx.dml.color import RGBColor
 import os
+import config
 
 
 class CriadorDeSlides:
     dir_at = os.path.dirname(os.path.realpath(__file__))
 
-    prs = Presentation(dir_at + '\\Padrao.pptx')  # Tema do Slide
-    
-    FontNameSM = "K2D SemiBold"
-    FontNameST = "K2D ExtraBold"
+    prs = Presentation(dir_at + '\\'+config.SLIDE_PADRAO+'.pptx')  # Tema do Slide
+
+    FontNameSM = config.FONTE_LETRAS
+    FontNameST = config.FONTE_TITULO
 
     def __init__(self):
         pass
@@ -33,7 +34,7 @@ class CriadorDeSlides:
         font = run.font
         font.name = CriadorDeSlides.FontNameST
         font.size = Pt(250)
-        font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
+        font.color.rgb = config.COR_DA_FONTE
         # SUBTITULO
         Subx = Cm(20)
         Suby = Cm(40)
@@ -49,7 +50,7 @@ class CriadorDeSlides:
         Subfont = Subrun.font
         Subfont.name = CriadorDeSlides.FontNameST
         Subfont.size = Pt(105)
-        Subfont.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
+        Subfont.color.rgb = config.COR_DA_FONTE
 
     def CriaSlideLetra(self, lista, titulo):
         x1 = Cm(10)
@@ -75,5 +76,14 @@ class CriadorDeSlides:
             font = run.font
             font.name = CriadorDeSlides.FontNameSM
             font.size = Pt(150)
-            font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
-            CriadorDeSlides.prs.save(titulo + ".pptx")
+            font.color.rgb = config.COR_DA_FONTE
+
+            #salva slides
+            #CriadorDeSlides.prs.save(titulo + ".pptx")
+            if os.path.exists(config.PASTA_SAIDA): #verifica se a pasta de saida existe
+                caminho_saida = os.path.join(config.PASTA_SAIDA, titulo + ".pptx")
+                CriadorDeSlides.prs.save(caminho_saida)
+            else: #pasta não existe e cria a pasta
+                os.makedirs(config.PASTA_SAIDA)
+                caminho_saida = os.path.join(config.PASTA_SAIDA, titulo + ".pptx")
+                CriadorDeSlides.prs.save(caminho_saida)
